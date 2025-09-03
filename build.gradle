@@ -16,25 +16,34 @@ repositories {
     mavenCentral()
     spigotmc()
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    // 如需 1.8-1.12 老版本，可改用 mavenLocal() 并本地 install spigot-api
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven {
         name = "CodeMC"
         url = uri("https://repo.codemc.io/repository/maven-public/")
     }
-    // 如需 1.8-1.12 老版本，可改用 mavenLocal() 并本地 install spigot-api
+    maven {
+        name = "PlaceHolderAPI"
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+    maven {
+        name = "LuckPerms"
+        url = 'https://repo.lucko.me/' }
 }
 
 dependencies {
-    compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.2")
+    implementation 'de.tr7zw:item-nbt-api-plugin:2.15.2'
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
     compileOnly 'mysql:mysql-connector-java:8.0.33'  // SQLUtils 用到 MySQL
+    compileOnly 'net.luckperms:api:5.4'
+    compileOnly 'me.clip:placeholderapi:2.11.6'
+    compileOnly 'com.zaxxer:HikariCP:7.0.2'
     compileOnly spigot('1.8')
 }
 
 spigot {
     name 'ChineseName'
     depends 'NBTAPI'
-    softDepends 'EssentialsX'
+    softDepends = ["EssentialsX", "PlaceholderAPI"]
     apiVersion = "1.8"
     version '2.0'
     authors = ["§b小雨"]
