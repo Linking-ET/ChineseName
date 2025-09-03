@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package main;
+package com.xiaoyumc.chinesename;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -28,7 +28,7 @@ public class main extends JavaPlugin implements Listener {
 
     public void onEnable() {
         instance = this;
-        File file = new File(main.getInstance().getDataFolder(),"settings.yml");
+        File file = new File(main.getInstance().getDataFolder(), "main/resources/settings.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.options().copyDefaults();
         try {

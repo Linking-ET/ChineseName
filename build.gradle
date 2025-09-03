@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'io.typst.spigradle' version '3.0.4'
+}
+
+group   = 'dev.xiaoyu'
+version = '2.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)   // Spigot 1.8-1.20 均可
+    }
+}
+
+repositories {
+    mavenCentral()
+    spigotmc()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven {
+        name = "CodeMC"
+        url = uri("https://repo.codemc.io/repository/maven-public/")
+    }
+    // 如需 1.8-1.12 老版本，可改用 mavenLocal() 并本地 install spigot-api
+}
+
+dependencies {
+    compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.2")
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compileOnly 'mysql:mysql-connector-java:8.0.33'  // SQLUtils 用到 MySQL
+    compileOnly spigot('1.8')
+}
+
+spigot {
+    name 'ChineseName'
+    softDepends 'EssentialsX'
+    apiVersion = "1.8"
+    version '2.0'
+    authors = ["§b小雨"]
+    main = "com.xiaoyumc.chinesename.main"
+    description "§b§l一款简单的的中文改名卡插件"
+    // libraries = configurations.implementation.dependencies.collect { "$it.group:$it.name:$it.version".toString() }
+    commands {
+        create('chinesename') {
+            aliases 'cn'
+            description "使用/cn help 页码 查看帮助"
+        }
+    }
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+}

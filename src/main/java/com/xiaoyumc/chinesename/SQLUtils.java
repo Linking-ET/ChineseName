@@ -1,4 +1,4 @@
-package main;
+package com.xiaoyumc.chinesename;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -30,7 +30,7 @@ public class SQLUtils {
      */
     public static Boolean prepare() {
         try {
-            File file = new File(main.getInstance().getDataFolder(),"settings.yml");
+            File file = new File(main.getInstance().getDataFolder(), "main/resources/settings.yml");
             YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
             ip = config.getString("database_ip");
