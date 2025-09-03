@@ -28,7 +28,8 @@ public class main extends JavaPlugin implements Listener {
 
     public void onEnable() {
         instance = this;
-        File file = new File(main.getInstance().getDataFolder(), "main/resources/settings.yml");
+        saveResource("settings.yml", false);
+        File file = new File(main.getInstance().getDataFolder(), "settings.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.options().copyDefaults();
         try {

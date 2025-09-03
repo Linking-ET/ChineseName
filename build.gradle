@@ -33,6 +33,7 @@ dependencies {
 
 spigot {
     name 'ChineseName'
+    depends 'NBTAPI'
     softDepends 'EssentialsX'
     apiVersion = "1.8"
     version '2.0'

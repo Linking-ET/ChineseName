@@ -19,7 +19,7 @@ import java.util.List;
 public class _setName_ implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        File file = new File(main.getInstance().getDataFolder(), "main/resources/settings.yml");
+        File file = new File(main.getInstance().getDataFolder(), "settings.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
         if (strings.length == 2 && strings[0].equals("set")) {
