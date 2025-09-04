@@ -18,6 +18,7 @@ import java.io.IOException;
 
 public class main extends JavaPlugin implements Listener {
     private static main instance;
+    private PapiExpansion papi;
 
     public main() {
     }
@@ -47,10 +48,17 @@ public class main extends JavaPlugin implements Listener {
         Bukkit.getConsoleSender().sendMessage("§b 作者:小雨        QQ:2563818664");
         Bukkit.getConsoleSender().sendMessage("§b爱发电 https://afdian.net/@ixiaoyu");
         Bukkit.getConsoleSender().sendMessage("§b================================");
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            papi = new PapiExpansion();
+            papi.register();
+        }
     }
 
     public void onDisable() {
         System.out.println("[ChineseName]插件已卸载");
+        if (papi != null) {
+            papi.unregister();
+        }
     }
 
     @EventHandler
