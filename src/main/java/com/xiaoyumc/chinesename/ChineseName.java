@@ -23,27 +23,16 @@ public final class ChineseName extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         instance = this;
-        try {
-            Plugin nbt = getServer().getPluginManager().getPlugin("NBTAPI");
-            if (nbt != null) {
-                File jar = new File(nbt.getDataFolder().getParentFile(), "item-nbt-api-plugin-2.15.2.jar");
-                if (jar.exists()) {
-                    java.net.URLClassLoader cl = (java.net.URLClassLoader) getClassLoader();
-                    java.lang.reflect.Method add = java.net.URLClassLoader.class
-                            .getDeclaredMethod("addURL", java.net.URL.class);
-                    add.setAccessible(true);
-                    add.invoke(cl, jar.toURI().toURL());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         ConfigManager.load(this);
         DatabaseManager.init(this);
         getCommand("cn").setExecutor(new CnCommand());
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new CardManager(), this);
         Bukkit.getConsoleSender().sendMessage("§b[ChineseName] 已加载");
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new ChineseExpansion().register();
+            Bukkit.getConsoleSender().sendMessage("§b[ChineseName] 已注册PAPI变量");
+        }
     }
 
     @Override
