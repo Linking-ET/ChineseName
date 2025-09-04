@@ -34,7 +34,7 @@ public final class ChineseName extends JavaPlugin implements Listener {
         String intro = PREFIX + "§b中文名插件重置版已加载\n" +
                 PREFIX + "§b原作者:小雨        QQ:2563818664\n" +
                 PREFIX + "§b重置版作者:小陈     XChen446@github.com\n" +
-                PREFIX + "§b感谢LET服务器深度测试支持！\n" +
+                PREFIX + "§b感谢LET服务器提供的深度测试支持！\n" +
                 PREFIX + "§b项目地址：https://github.com/Linking-ET/ChineseName";
 
         Bukkit.getConsoleSender().sendMessage(intro);

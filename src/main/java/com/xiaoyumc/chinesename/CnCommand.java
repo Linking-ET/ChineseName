@@ -2,7 +2,8 @@ package com.xiaoyumc.chinesename;
 
 import com.xiaoyumc.chinesename.card.CardManager;
 import com.xiaoyumc.chinesename.config.ConfigManager;
-import com.xiaoyumc.chinesename.db.NameStorage;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
 import com.xiaoyumc.chinesename.db.StorageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,15 +43,31 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd,
                              @NotNull String label, String[] args) {
-
+        String prefix = ChineseName.PREFIX;
         /* 无参数 -> help */
         if (args.length == 0) {
-            sender.sendMessage(ChineseName.PREFIX + "§b中文名插件重置版已加载");
-            sender.sendMessage(ChineseName.PREFIX + "原作者:小雨        QQ:2563818664");
-            sender.sendMessage(ChineseName.PREFIX + "重置版作者:小陈     XChen446@github.com");
-            sender.sendMessage(ChineseName.PREFIX + "感谢LET服务器支持！");
-            sender.sendMessage(ChineseName.PREFIX + "项目地址：https://github.com/Linking-ET/ChineseName");
-            sender.sendMessage(ChineseName.PREFIX + "查看帮助请输入/cn help");
+            sender.sendMessage(prefix + "§b中文名插件重置版");
+            sender.sendMessage(prefix + "原作者:小雨        QQ:2563818664");
+            sender.sendMessage(prefix + "重置版作者:小陈     XChen446@github.com");
+            sender.sendMessage(prefix + "感谢LET服务器对本插件提供的深度测试支持！");
+
+            /* ---- 可点击链接 ---- */
+            if (sender instanceof Player) {
+                Player player = (Player) sender;
+                // LET 服务器介绍页
+                TextComponent line1 = new TextComponent(prefix + "§fLET服务器介绍页：§nhttps://www.link-et.link");
+                line1.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.link-et.link"));
+                player.spigot().sendMessage(line1);
+
+                // 项目地址
+                TextComponent line2 = new TextComponent(prefix + "§f项目地址：§nhttps://github.com/Linking-ET/ChineseName");
+                line2.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/Linking-ET/ChineseName"));
+                player.spigot().sendMessage(line2);
+            } else {
+                sender.sendMessage(prefix + "§fLET服务器介绍页：https://www.link-et.link");
+                sender.sendMessage(prefix + "§f项目地址：https://github.com/Linking-ET/ChineseName");
+            }
+            sender.sendMessage(prefix + "查看帮助请输入 /cn help");
             return true;
         }
 

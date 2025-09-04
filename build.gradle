@@ -3,8 +3,8 @@ plugins {
     id 'io.typst.spigradle' version '3.0.4'
 }
 
-group   = 'dev.xiaoyu'
-version = '3.3.2'
+group   = 'let.xiaochen'
+version = '3.3.3'
 
 java {
     toolchain {
@@ -46,7 +46,7 @@ spigot {
     softDepends = ["EssentialsX", "PlaceholderAPI"]
     apiVersion = "1.8"
     version project.version
-    authors = ["§b小雨"]
+    authors = ["§b小雨", "§a小陈"]
     main = "com.xiaoyumc.chinesename.ChineseName"
     description "§b§l一款简单的的中文改名卡插件"
     // libraries = configurations.implementation.dependencies.collect { "$it.group:$it.name:$it.version".toString() }
