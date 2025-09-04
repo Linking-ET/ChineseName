@@ -14,7 +14,11 @@ public final class YamlStorage {
 
     static {
         if (!FILE.exists())
-            ChineseName.getInstance().saveResource("nick.yml", false); // 空文件
+            try {
+                FILE.createNewFile();          // 立即创建空文件
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         cfg = YamlConfiguration.loadConfiguration(FILE);
     }
 
