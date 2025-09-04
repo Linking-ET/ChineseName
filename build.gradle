@@ -4,11 +4,11 @@ plugins {
 }
 
 group   = 'dev.xiaoyu'
-version = '2.0'
+version = '3.0'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8)   // Spigot 1.8-1.20 均可
+        languageVersion = JavaLanguageVersion.of(11)   // Spigot 1.8-1.20 均可
     }
 }
 
@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'de.tr7zw:item-nbt-api-plugin:2.15.2'
+    compileOnly 'de.tr7zw:item-nbt-api:2.15.2'
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
     compileOnly 'mysql:mysql-connector-java:8.0.33'  // SQLUtils 用到 MySQL
     compileOnly 'net.luckperms:api:5.4'
@@ -45,9 +45,9 @@ spigot {
     depends 'NBTAPI'
     softDepends = ["EssentialsX", "PlaceholderAPI"]
     apiVersion = "1.8"
-    version '2.0'
+    version project.version
     authors = ["§b小雨"]
-    main = "com.xiaoyumc.chinesename.main"
+    main = "com.xiaoyumc.chinesename.ChineseName"
     description "§b§l一款简单的的中文改名卡插件"
     // libraries = configurations.implementation.dependencies.collect { "$it.group:$it.name:$it.version".toString() }
     commands {

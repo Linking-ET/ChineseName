@@ -1,0 +1,8 @@
+prefix: '&b[&f中文名&b] '
+no-permission: '&c你缺少权限：&e%permission%'
+only-player: '&c该命令只能由玩家执行'
+success-set: '&e你的名字已设为：&f%name%'
+success-reset: '&e已将 &f%player% &e的名字重置为原名'
+give-card: '&b给予 &f%player% &b改名卡'
+use-card: '&e使用改名卡，新名字：&f%name%'
+...

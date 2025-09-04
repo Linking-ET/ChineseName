@@ -1,7 +1,26 @@
+#在tab中是否生效
 tablist: true
 
+#改名卡物品相关设置
 name: "§d§l改名卡"
 lores:
   - "§e食用方法:"
   - "§e/cn usecard 名称"
   - "§d233"
+
+# 存储方式：sqlite / mysql / yaml
+storage-type: yaml
+
+# ========== MySQL 配置（当 storage-type = mysql 时生效） ==========
+database_ip: localhost
+database_port: 3306
+database_name: minecraft
+database_user: root
+database_password: ""
+
+# SQLite 无需额外配置（文件自动生成在 plugins/ChineseName/chinesename.db）
+
+# 当 storage-type = yaml 时生效
+yaml:
+  # 是否把昵称写入 config.yml（true：单行格式，false：不写入）
+  save-to-config: true
