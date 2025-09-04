@@ -1,6 +1,11 @@
 #在tab中是否生效
 tablist: true
 
+# 最大长度限制
+max-length: 16
+# 正则表达式（空串表示不检查）
+regex: "^[\\u4e00-\\u9fa5A-Za-z0-9_]+$"
+
 #改名卡物品相关设置
 name: "§d§l改名卡"
 lores:
