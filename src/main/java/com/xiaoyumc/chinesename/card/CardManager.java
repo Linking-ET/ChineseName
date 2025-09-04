@@ -15,16 +15,13 @@ public final class CardManager implements Listener {
         card.setAmount(amount);
         p.getInventory().addItem(card);
     }
-
     /**
-     * 扣除指定数量的改名卡，返回是否成功
+     * 扣除指定数量的改名卡
      */
     public static boolean takeCard(Player p, int amount) {
         int removed = 0;
         for (ItemStack item : p.getInventory().getContents()) {
-            if (item == null || item.getType() != Material.NAME_TAG) continue;
             if (!CardItemFactory.isCard(item)) continue;
-
             int toRemove = Math.min(amount - removed, item.getAmount());
             item.setAmount(item.getAmount() - toRemove);
             removed += toRemove;
