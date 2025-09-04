@@ -44,8 +44,13 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
                              @NotNull String label, String[] args) {
 
         /* 无参数 -> help */
-        if (args.length == 0 || (args.length == 1 && args[0].equalsIgnoreCase("help"))) {
-            sendHelp(sender, 1);
+        if (args.length == 0) {
+            sender.sendMessage(ChineseName.PREFIX + "§b中文名插件重置版已加载");
+            sender.sendMessage(ChineseName.PREFIX + "原作者:小雨        QQ:2563818664");
+            sender.sendMessage(ChineseName.PREFIX + "重置版作者:小陈     XChen446@github.com");
+            sender.sendMessage(ChineseName.PREFIX + "感谢LET服务器支持！");
+            sender.sendMessage(ChineseName.PREFIX + "项目地址：https://github.com/Linking-ET/ChineseName");
+            sender.sendMessage(ChineseName.PREFIX + "查看帮助请输入/cn help");
             return true;
         }
 

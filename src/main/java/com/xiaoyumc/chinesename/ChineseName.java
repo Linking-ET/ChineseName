@@ -18,6 +18,8 @@ import java.io.File;
 public final class ChineseName extends JavaPlugin implements Listener {
     private static ChineseName instance;
 
+    public static final String PREFIX = "§b[ChineseNameReloaded] §f";
+
     public static ChineseName getInstance() { return instance; }
 
     @Override
@@ -28,10 +30,17 @@ public final class ChineseName extends JavaPlugin implements Listener {
         getCommand("cn").setExecutor(new CnCommand());
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new CardManager(), this);
-        Bukkit.getConsoleSender().sendMessage("§b[ChineseName] 已加载");
+        // 1. 插件加载 / 2. 主命令无参数时
+        String intro = PREFIX + "§b中文名插件重置版已加载\n" +
+                PREFIX + "§b原作者:小雨        QQ:2563818664\n" +
+                PREFIX + "§b重置版作者:小陈     XChen446@github.com\n" +
+                PREFIX + "§b感谢LET服务器深度测试支持！\n" +
+                PREFIX + "§b项目地址：https://github.com/Linking-ET/ChineseName";
+
+        Bukkit.getConsoleSender().sendMessage(intro);
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new ChineseExpansion().register();
-            Bukkit.getConsoleSender().sendMessage("§b[ChineseName] 已注册PAPI变量");
+            Bukkit.getConsoleSender().sendMessage(PREFIX + "已注册PAPI变量");
         }
     }
 
@@ -40,6 +49,7 @@ public final class ChineseName extends JavaPlugin implements Listener {
         DatabaseManager.shutdown();
         PluginCommand cmd = getCommand("cn");
         if (cmd != null) cmd.setExecutor(null);
+        Bukkit.getConsoleSender().sendMessage(PREFIX + "已禁用插件");
     }
 
     @EventHandler
