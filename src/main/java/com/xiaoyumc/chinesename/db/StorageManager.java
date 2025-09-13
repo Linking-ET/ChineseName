@@ -3,17 +3,31 @@ package com.xiaoyumc.chinesename.db;
 import com.xiaoyumc.chinesename.ChineseName;
 import com.xiaoyumc.chinesename.config.ConfigManager;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 public final class StorageManager {
 
-    private static String current = ConfigManager.getSettings().getString("storage-type", "yaml").toLowerCase();
+    private static final String current = ConfigManager.getSettings().getString("storage-type", "yaml").toLowerCase();
 
     public static String getCurrent() { return current; }
 
-    public static String getName(String uuid) {
+    /* ====== 统一 Player 入口 ====== */
+    public static String getName(@NotNull Player player) {
+        return getName(player.getUniqueId().toString());
+    }
+
+    public static void setName(@NotNull Player player, String name) {
+        setName(player.getUniqueId().toString(), name);
+    }
+
+    public static void forceSetName(@NotNull Player player, String name) {
+        setName(player.getUniqueId().toString(), name);
+    }
+    /* ============================ */
+    public static @Nullable String getName(String uuid) {
         switch (current) {
             case "mysql":
             case "sqlite":
@@ -26,7 +40,6 @@ public final class StorageManager {
     }
 
     public static void setName(String uuid, String name) {
-        // 1. 先写主存储
         switch (current) {
             case "mysql":
             case "sqlite":

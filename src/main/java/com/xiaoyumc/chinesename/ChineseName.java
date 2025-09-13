@@ -4,16 +4,14 @@ import com.xiaoyumc.chinesename.card.CardManager;
 import com.xiaoyumc.chinesename.config.ConfigManager;
 import com.xiaoyumc.chinesename.db.DatabaseManager;
 import com.xiaoyumc.chinesename.db.NameStorage;
+import com.xiaoyumc.chinesename.db.StorageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 public final class ChineseName extends JavaPlugin implements Listener {
     private static ChineseName instance;
@@ -54,7 +52,7 @@ public final class ChineseName extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        String name = NameStorage.getName(e.getPlayer().getUniqueId().toString());
+        String name = StorageManager.getName(e.getPlayer());
         if (name != null) {
             e.getPlayer().setDisplayName(name + ChatColor.RESET);
             e.getPlayer().setPlayerListName(name + ChatColor.RESET);

@@ -98,7 +98,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
             if (!p.hasPermission("cn.bypass.maxlength") && !checkLength(p, name)) return true;
             if (!p.hasPermission("cn.bypass.regex") && !checkRegex(p, name)) return true;
 
-            if (!temp) StorageManager.setName(p.getUniqueId().toString(), name);
+            if (!temp) StorageManager.setName(p, name);
             p.setDisplayName(name + ChatColor.RESET);
             if (ConfigManager.getSettings().getBoolean("tablist", true)) {
                 p.setPlayerListName(name + ChatColor.RESET);
@@ -128,7 +128,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
             if (!sender.hasPermission("cn.bypass.maxlength") && !checkLength(sender, name)) return true;
             if (!sender.hasPermission("cn.bypass.regex") && !checkRegex(sender, name)) return true;
 
-            if (!temp) StorageManager.setName(target.getUniqueId().toString(), name);
+            if (!temp) StorageManager.setName(target, name);
             target.setDisplayName(name + ChatColor.RESET);
             if (ConfigManager.getSettings().getBoolean("tablist", true)) {
                 target.setPlayerListName(name + ChatColor.RESET);
@@ -155,7 +155,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
             boolean temp = args.length > 2 && args[2].equalsIgnoreCase("-t");
             String real = target.getName();
 
-            if (!temp) StorageManager.setName(target.getUniqueId().toString(), real);
+            if (!temp) StorageManager.setName(target, real);
             target.setDisplayName(real + ChatColor.RESET);
             if (ConfigManager.getSettings().getBoolean("tablist", true)) {
                 target.setPlayerListName(real + ChatColor.RESET);
@@ -179,7 +179,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage("§c玩家不在线");
                 return true;
             }
-            String dbName = StorageManager.getName(target.getUniqueId().toString());
+            String dbName = StorageManager.getName(target);
             String dispName = target.getDisplayName();
             sender.sendMessage("§b" + target.getName() + " 的中文名：" + (dbName == null ? "无" : dbName));
             return true;
@@ -233,7 +233,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
             if (!p.hasPermission("cn.bypass.maxlength") && !checkLength(p, name)) return true;
             if (!p.hasPermission("cn.bypass.regex") && !checkRegex(p, name)) return true;
 
-            StorageManager.setName(p.getUniqueId().toString(), name);
+            StorageManager.setName(p, name);
             p.setDisplayName(name + ChatColor.RESET);
             if (ConfigManager.getSettings().getBoolean("tablist", true)) {
                 p.setPlayerListName(name + ChatColor.RESET);

@@ -23,7 +23,7 @@ public class ChineseExpansion extends PlaceholderExpansion {
     public String onPlaceholderRequest(Player player, @NotNull String identifier) {
         if (player == null) return "";
         if ("name".equalsIgnoreCase(identifier)) {
-            return StorageManager.getName(player.getUniqueId().toString());
+            return StorageManager.getName(player);
         }
         return null;
     }
