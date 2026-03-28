@@ -4,7 +4,7 @@ plugins {
 }
 
 group   = 'let.xiaochen'
-version = '3.3.3'
+version = '3.3.4'
 
 java {
     toolchain {
@@ -46,7 +46,7 @@ spigot {
     softDepends = ["EssentialsX", "PlaceholderAPI"]
     apiVersion = "1.8"
     version project.version
-    authors = ["§b小雨", "§a小陈"]
+    authors = ["§b小雨", "§aXChen446"]
     main = "com.xiaoyumc.chinesename.ChineseName"
     description "§b§l一款简单的的中文改名卡插件"
     // libraries = configurations.implementation.dependencies.collect { "$it.group:$it.name:$it.version".toString() }

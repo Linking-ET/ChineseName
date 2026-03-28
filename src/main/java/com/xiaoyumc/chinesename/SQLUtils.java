@@ -5,6 +5,18 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.sql.*;
 
+/**
+ * ⚠️⚠️⚠️ 警告：此类已过时 ⚠️⚠️⚠️
+ * 
+ * SQLUtils 使用单例 Connection，不是线程安全的！
+ * 在 Folia 等多线程环境下会导致严重问题。
+ * 
+ * ✅ 请使用 {@link DatabaseManager} + {@link NameStorage} 替代
+ * 它们使用 HikariCP 连接池，是线程安全的。
+ * 
+ * @deprecated 请使用 DatabaseManager 和 NameStorage
+ */
+@Deprecated
 public class SQLUtils {
 
     private static Connection connection;
@@ -30,7 +42,7 @@ public class SQLUtils {
      */
     public static Boolean prepare() {
         try {
-            File file = new File(main.getInstance().getDataFolder(), "settings.yml");
+            File file = new File(ChineseName.getInstance().getDataFolder(), "settings.yml");
             YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
             ip = config.getString("database_ip");

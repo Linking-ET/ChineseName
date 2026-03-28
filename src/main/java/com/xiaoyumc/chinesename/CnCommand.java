@@ -118,7 +118,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             Player target = Bukkit.getPlayer(args[1]);
-            if (target == null) {
+            if (target == null || !target.isOnline()) {
                 sender.sendMessage("§c玩家不在线");
                 return true;
             }
@@ -148,7 +148,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             Player target = Bukkit.getPlayer(args[1]);
-            if (target == null) {
+            if (target == null || !target.isOnline()) {
                 sender.sendMessage("§c玩家不在线");
                 return true;
             }
@@ -175,7 +175,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             Player target = Bukkit.getPlayer(args[1]);
-            if (target == null) {
+            if (target == null || !target.isOnline()) {
                 sender.sendMessage("§c玩家不在线");
                 return true;
             }
@@ -196,7 +196,7 @@ public final class CnCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             Player target = Bukkit.getPlayer(args[1]);
-            if (target == null) {
+            if (target == null || !target.isOnline()) {
                 sender.sendMessage("§c玩家不在线");
                 return true;
             }

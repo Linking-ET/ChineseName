@@ -2,10 +2,12 @@ package com.xiaoyumc.chinesename.db;
 
 import com.xiaoyumc.chinesename.ChineseName;
 import com.xiaoyumc.chinesename.config.ConfigManager;
-import org.bukkit.Bukkit;
+import com.xiaoyumc.chinesename.util.SchedulerUtil;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 public final class StorageManager {
@@ -50,16 +52,24 @@ public final class StorageManager {
                 break;
         }
 
+        // 异步保存到 config（如果启用）
         boolean saveToConfig = ConfigManager.getSettings().getBoolean("save-to-config", false);
         if (saveToConfig) {
-            ConfigManager.getConfig().set(uuid, name);
+            SchedulerUtil.runAsync(ChineseName.getInstance(), () -> {
+                ConfigManager.getConfig().set(uuid, name);
+                try {
+                    ConfigManager.getConfig().save(new File(ChineseName.getInstance().getDataFolder(), "config.yml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
-        YamlStorage.cfg.set(uuid, name);
+        // YamlStorage 内部已处理异步保存
     }
 
     /* 异步转换：src → dst */
     public static void convertAsync(String src, String dst) {
-        Bukkit.getScheduler().runTaskAsynchronously(ChineseName.getInstance(), () -> {
+        SchedulerUtil.runAsync(ChineseName.getInstance(), () -> {
             try {
                 Set<String> keys = src.equals("yaml") ? YamlStorage.cfg.getKeys(false) : NameStorage.getAllUUIDs();
                 for (String uuidStr : keys) {

@@ -1,6 +1,7 @@
 package com.xiaoyumc.chinesename.db;
 
 import com.xiaoyumc.chinesename.ChineseName;
+import com.xiaoyumc.chinesename.util.SchedulerUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -28,10 +29,13 @@ public final class YamlStorage {
 
     public static void setName(String uuid, String name) {
         cfg.set(uuid, name);
-        try {
-            cfg.save(FILE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // 异步保存 YAML 文件，避免阻塞主线程（Folia 兼容性）
+        SchedulerUtil.runAsync(ChineseName.getInstance(), () -> {
+            try {
+                cfg.save(FILE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
