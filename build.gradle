@@ -45,6 +45,7 @@ spigot {
     depends 'NBTAPI'
     softDepends = ["EssentialsX", "PlaceholderAPI"]
     apiVersion = "1.8"
+    folia = true
     version project.version
     authors = ["§b小雨", "§aXChen446"]
     main = "com.xiaoyumc.chinesename.ChineseName"
